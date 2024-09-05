@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Providers/AuthProvider';
+import { toast } from 'react-toastify';
 
 const SignupForm = () => {
+
+    const {signUp} = useContext(AuthContext)
+
     
+    // form submit handler 
+    const submitHandler = async (e)=>{
+        e.preventDefault()
+        const form = e.target
+        const firstName = form.firstName.value
+        const lastName = form.lastName.value
+        const email = form.email.value
+        const password = form.password.value
+
+        try{
+            const res = await signUp(email,password)
+            return toast.success('Account created')
+        }
+        catch(err){
+            if(err.message==='Firebase: Error (auth/email-already-in-use).')
+                toast.error('Email is already in use')
+            if(err.message==='Firebase: Password should be at least 6 characters (auth/weak-password).')
+                toast.error('Password should be at least 6 characters')
+        }       
+    }
+
     return (
         <section className='w-11/12 mx-auto lg:w-1/2 h-full flex justify-center items-center mb-[100px]'>
         <div className='w-11/12 flex justify-center items-center flex-col max-w-[500px] p-6 bg-[#fafafa]'>
@@ -15,7 +41,7 @@ const SignupForm = () => {
             <h3 className='text-gray-600 font-medium text-center'>Signup for purchase your desire products</h3>
             
         {/* form */}
-            <form className="card-body p-0 mt-4 w-full max-w-[500px]">
+            <form className="card-body p-0 mt-4 w-full max-w-[500px]" onSubmit={submitHandler}>
             <div className='w-full flex justify-center items-center flex-col lg:flex-row gap-3'>
                     <div className="form-control bg-white px-2 py-2 rounded-lg border-2 w-full">
                     <label className="label px-0 pt-0">
@@ -34,17 +60,17 @@ const SignupForm = () => {
                     <label className="label px-0 pt-0">
                         <span className="label-text text-xs text-gray-600">Email address</span>
                     </label>
-                    <input type="email" name='email' placeholder="email address" className=" bg-transparent border-none outline-none text-sm font-medium"  />
+                    <input type="email" name='email' placeholder="email address" className=" bg-transparent border-none outline-none text-sm font-medium" required />
             </div>
             <div className="form-control bg-white px-2 py-2 rounded-lg border-2 w-full">
                     <label className="label px-0 pt-0">
                         <span className="label-text text-xs text-gray-600">Password</span>
                     </label>
-                    <input type="password" name='password' placeholder="first name" className=" bg-transparent border-none outline-none text-sm font-medium"  />
+                    <input type="password" name='password' placeholder="first name" className=" bg-transparent border-none outline-none text-sm font-medium"  required/>
             </div>
             <div className="form-control">
             <label className="label cursor-pointer justify-start gap-2">
-                <input type="checkbox" className="checkbox border border-black w-3 h-3 rounded-sm font-medium" />
+                <input type="checkbox" className="checkbox border border-black w-3 h-3 rounded-sm font-medium" required/>
                 <span className="label-text font-semibold text-black">I agree to the Terms & Policy</span>
             </label>
             </div>
