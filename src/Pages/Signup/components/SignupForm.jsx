@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const SignupForm = () => {
     return (
-        <section className='h-[150vh] w-1/2 flex justify-center items-center'>
+        <section className='w-1/2 h-full flex justify-center items-center'>
         <div className='py-6 px-4 bg-[#fafafa]'>
 
             <h2 className='text-center font-semibold text-2xl text-black'>Welcome To</h2>

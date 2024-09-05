@@ -1,15 +1,16 @@
 import React from 'react';
 import SignupForm from './components/SignupForm';
+import Banner from './components/Banner';
 
 const Signup = () => {
     return (
-        <main className='flex w-full '>
+        <main className='flex w-full h-[150vh]'>
             
-            {/* sign up form */}
+            {/* sign up form section*/}
             <SignupForm/>
-            
-            {/* title and description */}
-            <section className='h-[100vh] w-1/2'>Title</section>
+
+            {/* banner section */}
+            <Banner/>
 
         </main>
     );
