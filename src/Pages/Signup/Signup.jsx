@@ -4,7 +4,7 @@ import Banner from './components/Banner';
 
 const Signup = () => {
     return (
-        <main className='flex w-full h-[150vh]'>
+        <main className='flex flex-col-reverse gap-5 md:gap-0 lg:flex-row w-full lg:h-[150vh]'>
             
             {/* sign up form section*/}
             <SignupForm/>
