@@ -4,6 +4,7 @@ import { FaApple } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const SignupForm = () => {
+    
     return (
         <section className='w-11/12 mx-auto lg:w-1/2 h-full flex justify-center items-center mb-[100px]'>
         <div className='w-11/12 flex justify-center items-center flex-col max-w-[500px] p-6 bg-[#fafafa]'>
