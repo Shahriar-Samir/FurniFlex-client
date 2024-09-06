@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const SignupForm = () => {
 
-    const {signUp} = useContext(AuthContext)
+    const {signUp,googleSignIn} = useContext(AuthContext)
 
     
     // form submit handler 
@@ -20,7 +20,7 @@ const SignupForm = () => {
         const password = form.password.value
 
         try{
-            const res = await signUp(email,password)
+            await signUp(email,password)
             return toast.success('Account created')
         }
         catch(err){
@@ -29,6 +29,16 @@ const SignupForm = () => {
             if(err.message==='Firebase: Password should be at least 6 characters (auth/weak-password).')
                 toast.error('Password should be at least 6 characters')
         }       
+    }
+
+    const signInWithGoogle =async ()=>{
+        try{
+           await googleSignIn()
+           return toast.success('SignedIn')
+        }
+        catch(err){
+            console.log(err.message)
+        }
     }
 
     return (
@@ -82,8 +92,8 @@ const SignupForm = () => {
             
             {/* Social Media Auths*/}
             <div className='flex flex-col lg:flex-row w-full gap-4 '>
-            <button className="flex justify-center items-center border-2 gap-3 py-3 px-5 bg-transparent text-black font-semibold w-full rounded-md"><FcGoogle  className='text-2xl'/> Sign in with Google</button>
-            <button className="flex justify-center items-center gap-3 py-3 px-5 border-2 bg-transparent rounded-md text-black font-semibold w-full "><FaApple /> Sign in with Apple</button>
+            <button className="flex justify-center items-center border-2 gap-3 py-3 px-5 bg-transparent hover:bg-gray-300 text-black font-semibold w-full rounded-md" onClick={signInWithGoogle} ><FcGoogle  className='text-2xl'/> Sign in with Google</button>
+            <button className="flex justify-center items-center gap-3 py-3 px-5 border-2 bg-transparent rounded-md text-black font-semibold w-full hover:bg-gray-300"><FaApple /> Sign in with Apple</button>
             </div>
             
             {/* navigate to login page button */}
