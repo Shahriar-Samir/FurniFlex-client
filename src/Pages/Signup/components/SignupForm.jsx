@@ -1,13 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { toast } from 'react-toastify';
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 const SignupForm = () => {
 
     const {signUp,googleSignIn} = useContext(AuthContext)
+    const [passVisibility,setPassVisibility] = useState(false)
 
     
     // form submit handler 
@@ -41,6 +44,10 @@ const SignupForm = () => {
         }
     }
 
+    const updatePassVisibility = ()=>{
+        return setPassVisibility(!passVisibility)
+    }
+
     return (
         <section className='w-11/12 mx-auto lg:w-1/2 h-full flex justify-center items-center mb-[100px]'>
         <div className='w-11/12 flex justify-center items-center flex-col max-w-[500px] p-6 bg-[#fafafa]'>
@@ -72,11 +79,12 @@ const SignupForm = () => {
                     </label>
                     <input type="email" name='email' placeholder="email address" className=" bg-transparent border-none outline-none text-sm font-medium" required />
             </div>
-            <div className="form-control bg-white px-2 py-2 rounded-lg border-2 w-full">
+            <div className="form-control bg-white px-2 py-2 rounded-lg border-2 w-full relative ">
                     <label className="label px-0 pt-0">
                         <span className="label-text text-xs text-gray-600">Password</span>
                     </label>
-                    <input type="password" name='password' placeholder="first name" className=" bg-transparent border-none outline-none text-sm font-medium"  required/>
+                    <input type={passVisibility? 'text' : 'password'} name='password' placeholder="first name" className=" bg-transparent border-none outline-none text-sm font-medium"  />   
+                    <div role='button' className='absolute right-5 top-[57%]' onClick={updatePassVisibility}>{passVisibility? <FaRegEyeSlash />: <FaRegEye />}</div> 
             </div>
             <div className="form-control">
             <label className="label cursor-pointer justify-start gap-2">

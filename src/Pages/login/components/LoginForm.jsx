@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 const LoginForm = () => {
     const {signIn,googleSignIn} = useContext(AuthContext)
+
+    const [passVisibility,setPassVisibility] = useState(false)
 
     const submitHandler =async (e)=>{
             e.preventDefault()
@@ -34,6 +38,9 @@ const LoginForm = () => {
         }
     }
 
+    const updatePassVisibility = ()=>{
+        return setPassVisibility(!passVisibility)
+    }
 
 
     return (
@@ -55,11 +62,12 @@ const LoginForm = () => {
                     </label>
                     <input type="email" name='email' placeholder="email address" className=" bg-transparent border-none outline-none text-sm font-medium"  />
             </div>
-            <div className="form-control bg-white px-2 py-2 rounded-lg border-2 w-full">
+            <div className="form-control bg-white px-2 py-2 rounded-lg border-2 w-full relative ">
                     <label className="label px-0 pt-0">
                         <span className="label-text text-xs text-gray-600">Password</span>
                     </label>
-                    <input type="password" name='password' placeholder="first name" className=" bg-transparent border-none outline-none text-sm font-medium"  />    
+                    <input type={passVisibility? 'text' : 'password'} name='password' placeholder="first name" className=" bg-transparent border-none outline-none text-sm font-medium"  />   
+                    <div role='button' className='absolute right-5 top-[57%]' onClick={updatePassVisibility}>{passVisibility? <FaRegEyeSlash />: <FaRegEye />}</div> 
             </div>
             <div className='w-full flex justify-end '>
             <label className="label p-0">
