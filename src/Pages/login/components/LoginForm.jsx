@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Providers/AuthProvider';
+import { toast, ToastContainer } from 'react-toastify';
 
 const LoginForm = () => {
+    const {signIn} = useContext(AuthContext)
+
+    const submitHandler =async (e)=>{
+            e.preventDefault()
+            const form = e.target 
+            console.log(form)
+            const email = form.email.value
+            const password = form.password.value
+
+            try{
+                await signIn(email,password)
+                return toast.success('Signed In')
+            }
+            catch(err){
+                console.log(err.message)
+            }
+    }
+
+
     return (
         <section className='w-11/12 mx-auto lg:w-1/2 h-full flex justify-center items-center mb-[100px]'>
+         <ToastContainer/>   
         <div className='w-11/12 flex justify-center items-center flex-col max-w-[500px] p-6 bg-[#fafafa]'>
 
         {/* form titles */}
@@ -15,7 +37,7 @@ const LoginForm = () => {
            </div>
             
         {/* form */}
-            <form className="card-body p-0 mt-10 w-full max-w-[500px]">
+            <form className="card-body p-0 mt-10 w-full max-w-[500px]" onSubmit={submitHandler}>
             <div className="form-control bg-white px-2 py-2 rounded-lg border-2 ">
                     <label className="label px-0 pt-0">
                         <span className="label-text text-xs text-gray-600">Email address</span>
