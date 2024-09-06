@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-     <header>
+     <header className="w-full border-b">
       <Navbar/>
      </header>
       <Outlet/>

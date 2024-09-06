@@ -5,7 +5,7 @@ import { TbShoppingBag } from "react-icons/tb";
 const Navbar = () => {
     return (
        
-            <nav className="navbar bg-base-100 w-11/12 mx-auto">
+            <nav className="navbar bg-base-100 w-11/12 mx-auto py-6">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
