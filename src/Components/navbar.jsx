@@ -46,8 +46,12 @@ const Navbar = () => {
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
  <li><Link className='font-medium text-base' to='/'>Home</Link></li>
         <li><Link to='/products' className='font-medium text-base'>Products</Link></li>
-        <li><Link to='/categories' className='font-medium text-base'>Categories</Link></li>
-        <li><Link to='/custom' className='font-medium text-base'>Custom</Link></li>
+        <li className='md:hidden'><Link to='/cart' className='font-medium text-base flex'>Cart <button className="flex items-center justify-center relative">
+  <Link to='/cart'>
+  <TbShoppingBag  className='text-3xl'/>
+ <div className="badge bg-black text-white text-base absolute end-[-7px] top-4 p-2">{amount}</div></Link>
+</button></Link></li>
+        <li className='mt-3' onClick={signOut}><button className='btn'>Sign out</button></li>
       </ul>
     </div>
     <Link className="text-xl flex items-center justify-center gap-2" to='/'>
@@ -67,7 +71,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end gap-10">
-  <button className="flex items-center justify-center relative">
+  <button className="hidden md:flex items-center justify-center relative">
   <Link to='/cart'>
   <TbShoppingBag  className='text-3xl'/>
  <div className="badge bg-black text-white text-base absolute end-[-7px] top-4 p-2">{amount}</div></Link>
