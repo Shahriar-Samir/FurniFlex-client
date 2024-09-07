@@ -5,6 +5,7 @@ import Login from '../Pages/login/login';
 import Products from '../Pages/Products/Products';
 import Cart from '../Pages/Cart/Cart';
 import PrivateRoute from './PrivateRoute';
+import AuthRoute from './AuthRoute';
 
 
 const router = createBrowserRouter([{
@@ -13,11 +14,11 @@ const router = createBrowserRouter([{
     children:[
         {
             path: '/signup',
-            element: <Signup/>,
+            element: <AuthRoute><Signup/></AuthRoute>,
         },
         {
             path: '/signin',
-            element: <Login/>,
+            element: <AuthRoute><Login/></AuthRoute>,
         },
         {
             path: '/products',
