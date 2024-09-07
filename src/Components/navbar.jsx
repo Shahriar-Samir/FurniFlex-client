@@ -6,8 +6,16 @@ import { AuthContext } from '../Providers/AuthProvider';
 
 const Navbar = () => {
     const {amount} = useContext(ProductsContext)
-    const {user} = useContext(AuthContext)
+    const {user,logout} = useContext(AuthContext)
 
+    const signOut = async ()=>{
+        try{
+          await logout() 
+        }
+        catch(err){
+          console.log(err.message)
+        }
+    }
 
     return (
        
@@ -66,7 +74,7 @@ const Navbar = () => {
 </figure></div>
   <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[10] mt-5 w-52 p-2 shadow">
     <h1 className='text-lg font-medium text-center'>{user?.email}</h1>
-    <li className='mt-3'><button className='btn'>Sign out</button></li>
+    <li className='mt-3' onClick={signOut}><button className='btn'>Sign out</button></li>
   </ul>
 </div>
   </div>

@@ -4,6 +4,7 @@ import App from '../App';
 import Login from '../Pages/login/login';
 import Products from '../Pages/Products/Products';
 import Cart from '../Pages/Cart/Cart';
+import PrivateRoute from './PrivateRoute';
 
 
 const router = createBrowserRouter([{
@@ -20,11 +21,11 @@ const router = createBrowserRouter([{
         },
         {
             path: '/products',
-            element: <Products/>
+            element: <PrivateRoute><Products/></PrivateRoute>
         },
         {
             path: '/cart',
-            element: <Cart/>
+            element: <PrivateRoute><Cart/></PrivateRoute>
         }
     ]
 
