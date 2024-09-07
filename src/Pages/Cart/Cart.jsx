@@ -6,7 +6,7 @@ import { ProductsContext } from '../../Providers/ProductsProvider';
 
 const Cart = () => {
 
-  const {addToCart,cart,removeFromCart,amount} = useContext(ProductsContext)
+  const {addToCart,cart,removeFromCart,decrementItem,totalPrice} = useContext(ProductsContext)
 
 
 
@@ -31,7 +31,7 @@ const Cart = () => {
                     </div>
                     <p className='w-full flex justify-between items-center'>
                         <span className='text-lg font-semibold text-gray-500'>Total</span>
-                        <span className='text-xl font-semibold'>£1071.00</span>
+                        <span className='text-xl font-semibold'>{totalPrice}</span>
                     </p>
                 </div>
                 <button className="btn bg-black text-white w-full">GO TO CHECKOUT</button>
@@ -44,7 +44,7 @@ const Cart = () => {
                    <div className='flex gap-4 '>
                    <div className='flex gap-4 items-center'>
                     <div className='border flex items-center p-2 h-fit rounded-md gap-2 '>
-                    <LuMinus  role='button'/>
+                    <LuMinus  role='button' onClick={()=> decrementItem(item)}/>
                         <span>{item.amount}</span>
                     <GoPlus className='text-2xl' onClick={()=> addToCart(item)}  role='button'/>
                     </div>

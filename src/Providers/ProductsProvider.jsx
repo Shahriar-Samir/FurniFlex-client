@@ -7,6 +7,8 @@ export const ProductsContext = createContext({})
 const ProductsProvider = ({children}) => {
     const [cart,setCart]= useState([])
     const [amount,setAmount] = useState(0)
+    const [totalPrice,setTotalPrice] = useState(0)
+
     const addToCart= (item) =>{
    
             if(cart.some(cartItem=> cartItem.name === item.name)){
@@ -31,6 +33,22 @@ const ProductsProvider = ({children}) => {
                 })
             }
     } 
+
+    const decrementItem = (item)=>{
+     
+            setCart(preArray=>{
+                return  preArray.map(oldItem=>{
+
+                        if(oldItem.name === item.name && oldItem.amount > 0){
+                            setAmount(amount-1)
+                            return {...oldItem, amount:oldItem.amount-1}
+                    }
+                    else{
+                        return oldItem
+                    }
+            })
+            })
+    }
 
     const removeFromCart= (item) =>{
             setCart(preArray=>{
@@ -60,7 +78,7 @@ const ProductsProvider = ({children}) => {
                         return res.data
                     })
         })
-    const productsValues = {products,isLoading,cart,addToCart,removeFromCart,amount}
+    const productsValues = {products,isLoading,cart,addToCart,removeFromCart,amount,decrementItem,totalPrice}
     return (
         <ProductsContext.Provider value={productsValues}>
             {children}
