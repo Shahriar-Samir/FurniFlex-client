@@ -40,7 +40,7 @@ const SignupForm = () => {
            return toast.success('SignedIn')
         }
         catch(err){
-            console.log(err.message)
+            toast.err('Something went wrong')
         }
     }
 
@@ -101,7 +101,6 @@ const SignupForm = () => {
             {/* Social Media Auths*/}
             <div className='flex flex-col lg:flex-row w-full gap-4 '>
             <button className="flex justify-center items-center border-2 gap-3 py-3 px-5 bg-transparent hover:bg-gray-300 text-black font-semibold w-full rounded-md" onClick={signInWithGoogle} ><FcGoogle  className='text-2xl'/> Sign in with Google</button>
-            <button className="flex justify-center items-center gap-3 py-3 px-5 border-2 bg-transparent rounded-md text-black font-semibold w-full hover:bg-gray-300"><FaApple /> Sign in with Apple</button>
             </div>
             
             {/* navigate to login page button */}

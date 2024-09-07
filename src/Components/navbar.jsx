@@ -17,7 +17,7 @@ const Navbar = () => {
             setTotalPrice(0)
           })
           .catch(err=>{
-            console.log(err.message)
+            toast.err('Something went wrong')
           })
   
     }

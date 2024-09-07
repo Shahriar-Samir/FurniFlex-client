@@ -38,7 +38,7 @@ const AuthProvider = ({children}) => {
         return signOut(auth)
     }
 
-        console.log(user)
+
     const authValues = {loading,setLoading,user,signUp,signIn,googleSignIn,logout}
 
     return <AuthContext.Provider value={authValues}>
