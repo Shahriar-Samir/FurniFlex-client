@@ -4,10 +4,9 @@ import { ProductsContext } from '../../Providers/ProductsProvider';
 
 const Products = () => {
 
-  const {isLoading,products} = useContext(ProductsContext)
+  const {isLoading,products,addToCart} = useContext(ProductsContext)
 
 
-    console.log(isLoading)
     if(isLoading){
       return <div className='w-full h-[80vh] flex justify-center items-center'>
             <h1>Loading</h1>
@@ -45,7 +44,7 @@ const Products = () => {
                         </h2>
                       <p className='text-lg text-gray-500'>{item.description}</p>
                       <div className="card-actions w-full">
-                        <button className="btn bg-black text-white w-full">Add to Cart</button>
+                        <button className="btn bg-black text-white w-full" onClick={()=> addToCart(item)}>Add to Cart</button>
                       </div>
                     </div>
                   </div>

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { TbShoppingBag } from "react-icons/tb";
+import { ProductsContext } from '../Providers/ProductsProvider';
 
 const Navbar = () => {
+    const {cart} = useContext(ProductsContext)
+
     return (
        
             <nav className="navbar bg-base-100 w-11/12 mx-auto py-6">
@@ -47,10 +50,10 @@ const Navbar = () => {
         <li><Link to='/custom' className='font-medium text-base'>Custom</Link></li>
     </ul>
   </div>
-  <div className="navbar-end gap-5">
+  <div className="navbar-end gap-10">
   <button className="flex items-center justify-center relative">
   <TbShoppingBag  className='text-3xl'/>
-  <div className="badge bg-black text-white text-[10px] absolute end-[-7px] top-4 p-2">0</div>
+  <div className="badge bg-black text-white text-base absolute end-[-7px] top-4 p-2">{cart.length}</div>
 </button>
 <figure className='w-[45px] h-[45px] rounded-full'>
         <img src='/Icons/user.png' className='w-full h-full'/>

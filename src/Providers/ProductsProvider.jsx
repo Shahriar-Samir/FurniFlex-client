@@ -1,10 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import axios from 'axios'
 
 export const ProductsContext = createContext({})
 
 const ProductsProvider = ({children}) => {
+    const [cart,setCart]= useState([])
+
+    const addToCart= (item) =>{
+            setCart(preArray=>{
+                return [...preArray,item]
+            })
+    } 
+
+
     const {data:products,isLoading} = useQuery(
         { 
           queryKey: ['products'], 
@@ -15,12 +24,15 @@ const ProductsProvider = ({children}) => {
                         return res.data
                     })
         })
-    const productsValues = {products,isLoading}
+    const productsValues = {products,isLoading,cart,addToCart}
     return (
         <ProductsContext.Provider value={productsValues}>
             {children}
         </ProductsContext.Provider>
     );
+
+
+
 };
 
 export default ProductsProvider;
