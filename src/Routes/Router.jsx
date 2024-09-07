@@ -6,6 +6,7 @@ import Products from '../Pages/Products/Products';
 import Cart from '../Pages/Cart/Cart';
 import PrivateRoute from './PrivateRoute';
 import AuthRoute from './AuthRoute';
+import Unfinished from '../Components/Unfinished';
 
 
 const router = createBrowserRouter([{
@@ -27,6 +28,18 @@ const router = createBrowserRouter([{
         {
             path: '/cart',
             element: <PrivateRoute><Cart/></PrivateRoute>
+        },
+        {
+            path: '/categories',
+            element: <Unfinished/>,
+        },
+        {
+            path: '/custom',
+            element: <Unfinished/>,
+        },
+        {
+            path: '/',
+            element: <Unfinished/>,
         }
     ]
 
