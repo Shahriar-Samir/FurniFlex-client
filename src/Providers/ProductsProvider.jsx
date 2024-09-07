@@ -103,7 +103,7 @@ const ProductsProvider = ({children}) => {
           queryKey: ['products'], 
           initialData: [],
           queryFn: ()=>
-                    axios.get('http://localhost:5000/products')
+                    axios.get('https://furni-flex-server-beta.vercel.app/products')
                     .then(res=>{
                         return res.data
                     })
