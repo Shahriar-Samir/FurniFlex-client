@@ -13,6 +13,14 @@ const ProductsProvider = ({children}) => {
             })
     } 
 
+    const removeFromCart= (item) =>{
+            setCart(preArray=>{
+                return preArray.filter(oldItem=>{
+                    return oldItem !== item
+                })
+            })
+    } 
+
 
     const {data:products,isLoading} = useQuery(
         { 
@@ -24,7 +32,7 @@ const ProductsProvider = ({children}) => {
                         return res.data
                     })
         })
-    const productsValues = {products,isLoading,cart,addToCart}
+    const productsValues = {products,isLoading,cart,addToCart,removeFromCart}
     return (
         <ProductsContext.Provider value={productsValues}>
             {children}

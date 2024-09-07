@@ -6,7 +6,7 @@ import { ProductsContext } from '../../Providers/ProductsProvider';
 
 const Cart = () => {
 
-  const {addToCart,cart} = useContext(ProductsContext)
+  const {addToCart,cart,removeFromCart} = useContext(ProductsContext)
 
 
 
@@ -57,7 +57,7 @@ const Cart = () => {
                    <h1 className='w-full mt-3 font-bold '>{item.name}</h1>
                    </div>
                     <div className="flex flex-col h-full justify-between items-center center">
-                    <GoPlus className='rotate-45 text-2xl ' />
+                    <GoPlus className='rotate-45 text-2xl ' onClick={()=> removeFromCart(item)} role='button'/>
                         <p className='text- font-semibold'>£{item.price}</p>
                     </div>
                   </div>
