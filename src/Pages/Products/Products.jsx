@@ -14,19 +14,19 @@ const Products = () => {
     }
 
     return (
-        <main className='w-11/12 mx-auto mt-20 flex justify-center gap-10'>
-            <aside className='w-3/12 max-w-[500px] border-e h-[50vh] flex flex-col gap-3'>
-        <div className='pb-2 border-b'>
-        <button className="btn btn-wide hover:bg-black hover:text-white">Rocking Chair</button>
+        <main className='w-11/12 mx-auto mt-20 flex flex-col md:flex-row justify-center gap-10'>
+            <aside className='md:w-3/12 md:max-w-[500px] md:border-e pe-4 flex  md:flex-col gap-3'>
+        <div className='pb-2 border-b w-full'>
+        <button className="btn hover:bg-black hover:text-white w-full">Rocking Chair</button>
         </div>
-            <div className='pb-2 border-b'>
-            <button className="btn btn-wide">Side Chair</button>
+            <div className='pb-2 border-b w-full'>
+            <button className="btn w-full">Side Chair</button>
             </div>
-           <div className='pb-2 border-b'>
-           <button className="btn btn-wide">Lounge Chair</button>
+           <div className='pb-2 border-b w-full'>
+           <button className="btn w-full">Lounge Chair</button>
            </div>
             </aside>
-            <section className='w-9/12 grid lg:grid-cols-3 gap-3'>
+            <section className='md:w-9/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
                 {products?.map(item=>{
                     return <div className="card bg-base-100 shadow-xl">
                     <figure className="px-5 pt-5 w-full">
