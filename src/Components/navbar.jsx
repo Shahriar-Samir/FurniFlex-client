@@ -52,8 +52,9 @@ const Navbar = () => {
   </div>
   <div className="navbar-end gap-10">
   <button className="flex items-center justify-center relative">
+  <Link to='/cart'>
   <TbShoppingBag  className='text-3xl'/>
-  <div className="badge bg-black text-white text-base absolute end-[-7px] top-4 p-2">{cart.length}</div>
+ <div className="badge bg-black text-white text-base absolute end-[-7px] top-4 p-2">{cart.length}</div></Link>
 </button>
 <figure className='w-[45px] h-[45px] rounded-full'>
         <img src='/Icons/user.png' className='w-full h-full'/>
