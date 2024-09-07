@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { GoPlus } from "react-icons/go";
+import { LuMinus } from "react-icons/lu";
 
 import { ProductsContext } from '../../Providers/ProductsProvider';
 
@@ -9,7 +11,7 @@ const Cart = () => {
 
 
     return (
-        <main className='w-10/12 mx-auto mt-20 flex flex-row-reverse justify-center gap-10'>
+        <main className='w-10/12 mx-auto mt-20 flex flex-row-reverse justify-center gap-16'>
             <aside className='w-3/12 max-w-[500px] h-[50vh] flex flex-col gap-3'>
                 <h1 className='font-semibold text-black text-xl'>Order Details</h1>
                 <div className='w-full p-4 border rounded-md flex flex-col gap-2'>
@@ -36,26 +38,27 @@ const Cart = () => {
             </aside>
           <section className='w-9/12'>
             <h1 className='text-xl font-semibold'>An overview of your order</h1>
-          <div className='w-full grid grid-cols-1 gap-10'>
+          <div className='w-full grid grid-cols-1 bg-base-200'>
                 {cart?.map(item=>{
-                    return <div className="card bg-base-100 shadow-xl">
-                    <figure className="px-5 pt-5 w-full">
+                    return <div className="flex h-[200px] w-full justify-between p-5 rounded-md border-b">
+                   <div className='flex gap-4 '>
+                   <div className='flex gap-4 items-center'>
+                    <div className='border flex items-center p-2 h-fit rounded-md gap-2 '>
+                    <LuMinus  role='button'/>
+                        <span>0</span>
+                    <GoPlus className='text-2xl'  role='button'/>
+                    </div>
+                   <figure className="w-[200px] h-full">
                       <img
                         src={item.img}
-                        alt="Shoes"
-                        className="rounded-xl w-full h-[240px] object-cover" />
+                        className="rounded-xl w-[200px] h-full object-cover" />
                     </figure>
-                    <div className="card-body items-center ">
-                      <h2 className="text-xl font-semibold text-start w-full">{item.name}</h2>
-                      <h2 className="flex justify-between w-full text-xl ">
-                        <span className='font-bold'>£{item.price}</span>
-                        <span className='text-gray-300 font-medium'><del>£{item.mainPrice}</del> </span>
-                        <span className='text-red-700 font-bold'>{item.discount}% OFF</span>
-                        </h2>
-                      <p className='text-lg text-gray-500'>{item.description}</p>
-                      <div className="card-actions w-full">
-                        <button className="btn bg-black text-white w-full" onClick={()=> addToCart(item)}>Add to Cart</button>
-                      </div>
+                   </div>
+                   <h1 className='w-full mt-3 font-bold '>{item.name}</h1>
+                   </div>
+                    <div className="flex flex-col h-full justify-between items-center center">
+                    <GoPlus className='rotate-45 text-2xl ' />
+                        <p className='text- font-semibold'>£{item.price}</p>
                     </div>
                   </div>
                 })}
