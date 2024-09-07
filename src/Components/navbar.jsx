@@ -5,16 +5,21 @@ import { ProductsContext } from '../Providers/ProductsProvider';
 import { AuthContext } from '../Providers/AuthProvider';
 
 const Navbar = () => {
-    const {amount} = useContext(ProductsContext)
+    const {amount,setAmount,setCart,setTotalPrice} = useContext(ProductsContext)
     const {user,logout} = useContext(AuthContext)
 
-    const signOut = async ()=>{
-        try{
-          await logout() 
-        }
-        catch(err){
-          console.log(err.message)
-        }
+
+    const signOut = ()=>{
+           logout() 
+          .then(res=>{
+            setAmount(0)
+            setCart([])
+            setTotalPrice(0)
+          })
+          .catch(err=>{
+            console.log(err.message)
+          })
+  
     }
 
     return (
