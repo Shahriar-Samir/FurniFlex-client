@@ -6,17 +6,45 @@ export const ProductsContext = createContext({})
 
 const ProductsProvider = ({children}) => {
     const [cart,setCart]= useState([])
-
+    const [amount,setAmount] = useState(0)
     const addToCart= (item) =>{
-            setCart(preArray=>{
-                return [...preArray,item]
-            })
+   
+            if(cart.some(cartItem=> cartItem.name === item.name)){
+                setAmount(amount+1)
+                    setCart(preArray=>{
+                        return  preArray.map(oldItem=>{
+                            if(oldItem.name === item.name){
+                                    return {...oldItem, amount:oldItem.amount+1}
+                            }
+                            else{
+                                return oldItem
+                            }
+                    })
+                    })
+            }
+            else{
+                setAmount(amount+1)
+                item.amount = 1
+              
+                setCart(preArray=>{
+                    return [...preArray,item]
+                })
+            }
     } 
 
     const removeFromCart= (item) =>{
             setCart(preArray=>{
+                preArray.map(oldItem=>{
+                    if(oldItem.name===item.name){
+                        setAmount(amount-oldItem.amount)
+                        return oldItem
+                    }
+                    else{
+                        return oldItem
+                    }
+                })
                 return preArray.filter(oldItem=>{
-                    return oldItem !== item
+                    return oldItem.name !== item.name
                 })
             })
     } 
@@ -32,7 +60,7 @@ const ProductsProvider = ({children}) => {
                         return res.data
                     })
         })
-    const productsValues = {products,isLoading,cart,addToCart,removeFromCart}
+    const productsValues = {products,isLoading,cart,addToCart,removeFromCart,amount}
     return (
         <ProductsContext.Provider value={productsValues}>
             {children}

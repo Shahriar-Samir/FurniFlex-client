@@ -6,7 +6,7 @@ import { ProductsContext } from '../../Providers/ProductsProvider';
 
 const Cart = () => {
 
-  const {addToCart,cart,removeFromCart} = useContext(ProductsContext)
+  const {addToCart,cart,removeFromCart,amount} = useContext(ProductsContext)
 
 
 
@@ -45,8 +45,8 @@ const Cart = () => {
                    <div className='flex gap-4 items-center'>
                     <div className='border flex items-center p-2 h-fit rounded-md gap-2 '>
                     <LuMinus  role='button'/>
-                        <span>0</span>
-                    <GoPlus className='text-2xl'  role='button'/>
+                        <span>{item.amount}</span>
+                    <GoPlus className='text-2xl' onClick={()=> addToCart(item)}  role='button'/>
                     </div>
                    <figure className="w-[200px] h-full">
                       <img
