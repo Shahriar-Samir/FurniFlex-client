@@ -13,10 +13,11 @@ const ProductsProvider = ({children}) => {
    
             if(cart.some(cartItem=> cartItem.name === item.name)){
                 setAmount(amount+1)
+                setTotalPrice(totalPrice+item.price)
                     setCart(preArray=>{
                         return  preArray.map(oldItem=>{
                             if(oldItem.name === item.name){
-                                    return {...oldItem, amount:oldItem.amount+1}
+                                    return {...oldItem, amount:oldItem.amount+1,totalPrice:oldItem.totalPrice+item.price}
                             }
                             else{
                                 return oldItem
@@ -26,8 +27,9 @@ const ProductsProvider = ({children}) => {
             }
             else{
                 setAmount(amount+1)
+                setTotalPrice(totalPrice+item.price)
                 item.amount = 1
-              
+                item.totalPrice = item.price
                 setCart(preArray=>{
                     return [...preArray,item]
                 })
@@ -41,6 +43,7 @@ const ProductsProvider = ({children}) => {
 
                         if(oldItem.name === item.name && oldItem.amount > 0){
                             setAmount(amount-1)
+                            setTotalPrice(totalPrice-item.price)
                             return {...oldItem, amount:oldItem.amount-1}
                     }
                     else{
@@ -55,6 +58,7 @@ const ProductsProvider = ({children}) => {
                 preArray.map(oldItem=>{
                     if(oldItem.name===item.name){
                         setAmount(amount-oldItem.amount)
+                        setTotalPrice(totalPrice-(item.price*oldItem.amount))
                         return oldItem
                     }
                     else{

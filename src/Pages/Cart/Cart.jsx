@@ -18,7 +18,7 @@ const Cart = () => {
                     <div className='flex flex-col gap-3 border-b pb-3 text-gray-500'>
                     <p className='w-full flex justify-between items-center'>
                         <span>Subtotal</span>
-                        <span className='font-semibold'>£1071</span>
+                        <span className='font-semibold'>£{totalPrice}</span>
                     </p>
                     <p className='w-full flex justify-between items-center'>
                         <span>Shipping</span>
@@ -31,7 +31,7 @@ const Cart = () => {
                     </div>
                     <p className='w-full flex justify-between items-center'>
                         <span className='text-lg font-semibold text-gray-500'>Total</span>
-                        <span className='text-xl font-semibold'>{totalPrice}</span>
+                        <span className='text-xl font-semibold'>£{totalPrice}</span>
                     </p>
                 </div>
                 <button className="btn bg-black text-white w-full">GO TO CHECKOUT</button>
