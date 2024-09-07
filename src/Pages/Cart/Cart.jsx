@@ -3,6 +3,7 @@ import { GoPlus } from "react-icons/go";
 import { LuMinus } from "react-icons/lu";
 
 import { ProductsContext } from '../../Providers/ProductsProvider';
+import { Helmet } from 'react-helmet-async';
 
 const Cart = () => {
 
@@ -12,6 +13,9 @@ const Cart = () => {
 
     return (
         <main className='w-10/12 mx-auto mt-20 flex flex-col md:flex-row-reverse justify-center gap-16'>
+                <Helmet>
+                <title>Cart || FurniFlex</title>
+            </Helmet>
             <aside className='md:w-3/12 max-w-[500px] h-[50vh] flex flex-col gap-3'>
                 <h1 className='font-semibold text-black text-xl'>Order Details</h1>
                 <div className='w-full p-4 border rounded-md flex flex-col gap-2'>

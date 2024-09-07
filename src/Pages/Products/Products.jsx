@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { ProductsContext } from '../../Providers/ProductsProvider';
+import { Helmet } from 'react-helmet-async';
 
 const Products = () => {
 
@@ -15,6 +16,9 @@ const Products = () => {
 
     return (
         <main className='w-11/12 mx-auto mt-20 flex flex-col md:flex-row justify-center gap-10'>
+               <Helmet>
+                <title>Products || FurniFlex</title>
+            </Helmet>
             <aside className='md:w-3/12 md:max-w-[500px] md:border-e pe-4 flex  md:flex-col gap-3'>
         <div className='pb-2 border-b w-full'>
         <button className="btn hover:bg-black hover:text-white w-full">Rocking Chair</button>

@@ -6,6 +6,9 @@ import { ToastContainer } from 'react-toastify';
 const Signup = () => {
     return (
         <main className='flex flex-col-reverse gap-5 md:gap-0 lg:flex-row w-full lg:h-[150vh]'>
+               <Helmet>
+                <title>Signup || FurniFlex</title>
+            </Helmet>
             <ToastContainer/>
             {/* sign up form section*/}
             <SignupForm/>
