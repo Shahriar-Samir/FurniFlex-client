@@ -6,7 +6,7 @@ import { ProductsContext } from '../../Providers/ProductsProvider';
 
 const Cart = () => {
 
-  const {addToCart,cart,removeFromCart,decrementItem,totalPrice} = useContext(ProductsContext)
+  const {addToCart,amount,cart,removeFromCart,decrementItem,totalPrice} = useContext(ProductsContext)
 
 
 
@@ -37,6 +37,11 @@ const Cart = () => {
                 <button className="btn bg-black text-white w-full">GO TO CHECKOUT</button>
             </aside>
           <section className='w-9/12'>
+           {amount===0? 
+           <div className='w-full flex justify-center items-center h-[50vh]'>
+                    <h1 className='text-xl font-semibold'>You haven't added any items to cart </h1>
+           </div>:
+           <>
             <h1 className='text-xl font-semibold'>An overview of your order</h1>
           <div className='w-full grid grid-cols-1 bg-base-200'>
                 {cart?.map(item=>{
@@ -63,6 +68,7 @@ const Cart = () => {
                   </div>
                 })}
             </div>
+           </> }
           </section>
         </main>
     );

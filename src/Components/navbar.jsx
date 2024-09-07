@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { TbShoppingBag } from "react-icons/tb";
 import { ProductsContext } from '../Providers/ProductsProvider';
+import { AuthContext } from '../Providers/AuthProvider';
 
 const Navbar = () => {
     const {amount} = useContext(ProductsContext)
+    const {user} = useContext(AuthContext)
+
 
     return (
        
@@ -56,9 +59,16 @@ const Navbar = () => {
   <TbShoppingBag  className='text-3xl'/>
  <div className="badge bg-black text-white text-base absolute end-[-7px] top-4 p-2">{amount}</div></Link>
 </button>
-<figure className='w-[45px] h-[45px] rounded-full'>
+
+<div className="dropdown dropdown-end">
+  <div tabIndex={0} role="button" className=""><figure className='w-[45px] h-[45px] rounded-full'>
         <img src='/Icons/user.png' className='w-full h-full'/>
-</figure>
+</figure></div>
+  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[10] mt-5 w-52 p-2 shadow">
+    <h1 className='text-lg font-medium text-center'>{user?.email}</h1>
+    <li className='mt-3'><button className='btn'>Sign out</button></li>
+  </ul>
+</div>
   </div>
 </nav>
 
