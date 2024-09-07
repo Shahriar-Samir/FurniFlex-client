@@ -31,15 +31,15 @@ const router = createBrowserRouter([{
         },
         {
             path: '/categories',
-            element: <Unfinished/>,
+            element: <PrivateRoute><Unfinished/></PrivateRoute>,
         },
         {
             path: '/custom',
-            element: <Unfinished/>,
+            element: <PrivateRoute><Unfinished/></PrivateRoute>,
         },
         {
             path: '/',
-            element: <Unfinished/>,
+            element: <PrivateRoute><Unfinished/></PrivateRoute>,
         }
     ]
 
