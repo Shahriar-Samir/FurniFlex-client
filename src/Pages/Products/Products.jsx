@@ -1,21 +1,13 @@
-import React from 'react';
-import axios from 'axios'
-import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+
+import { ProductsContext } from '../../Providers/ProductsProvider';
 
 const Products = () => {
 
-  const {data:products,isLoading} = useQuery(
-    { 
-      queryKey: ['products'], 
-      initialData: [],
-      queryFn: ()=>
-                axios.get('http://localhost:5000/products')
-                .then(res=>{
-                    return res.data
-                })
-    })
+  const {isLoading,products} = useContext(ProductsContext)
 
 
+    console.log(isLoading)
     if(isLoading){
       return <div className='w-full h-[80vh] flex justify-center items-center'>
             <h1>Loading</h1>
@@ -35,20 +27,25 @@ const Products = () => {
            <button className="btn btn-wide">Lounge Chair</button>
            </div>
             </aside>
-            <section className='w-9/12 grid grid-cols-3 gap-3'>
+            <section className='w-9/12 grid lg:grid-cols-3 gap-3'>
                 {products?.map(item=>{
-                    return <div className="card bg-base-100  shadow-xl">
-                    <figure className="px-5 pt-5">
+                    return <div className="card bg-base-100 shadow-xl">
+                    <figure className="px-5 pt-5 w-full">
                       <img
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                        src={item.img}
                         alt="Shoes"
-                        className="rounded-xl" />
+                        className="rounded-xl w-full h-[240px] object-cover" />
                     </figure>
-                    <div className="card-body items-center text-center">
-                      <h2 className="card-title">Shoes!</h2>
-                      <p>If a dog chews shoes whose shoes does he choose?</p>
-                      <div className="card-actions">
-                        <button className="btn btn-primary">Buy Now</button>
+                    <div className="card-body items-center ">
+                      <h2 className="text-xl font-semibold text-start w-full">{item.name}</h2>
+                      <h2 className="flex justify-between w-full text-xl ">
+                        <span className='font-bold'>£{item.price}</span>
+                        <span className='text-gray-300 font-medium'><del>£{item.mainPrice}</del> </span>
+                        <span className='text-red-700 font-bold'>{item.discount}% OFF</span>
+                        </h2>
+                      <p className='text-lg text-gray-500'>{item.description}</p>
+                      <div className="card-actions w-full">
+                        <button className="btn bg-black text-white w-full">Add to Cart</button>
                       </div>
                     </div>
                   </div>

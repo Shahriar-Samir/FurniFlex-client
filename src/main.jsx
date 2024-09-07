@@ -9,6 +9,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import ProductsProvider from './Providers/ProductsProvider.jsx';
 
 const queryClient = new QueryClient()
 
@@ -16,9 +17,10 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
     <AuthProvider>
+    <ProductsProvider>
     <RouterProvider router={router}/>
+    </ProductsProvider>
     </AuthProvider>
-
     </QueryClientProvider>
   </StrictMode>,
 )
